@@ -8,10 +8,10 @@ class Property:
         self.colour = colour
         self.owner = None
 
-# Function to load the monopoly board from a JSON file
+# Load the monopoly board from a JSON file
 def load_board(file_path):
 
-    # Attempt to open and load the board from the JSON file
+    # Attempt to open and parse the board from the JSON file
     try:
         with open(file_path, 'r') as file:
             board_spaces = json.load(file)
@@ -21,20 +21,20 @@ def load_board(file_path):
         return None 
     # Handle the case where the file is not valid JSON
     except json.JSONDecodeError:
-        print(f"Error: The file is not in valid JSON form")
+        print(f"Error: The file is not in valid JSON format")
         return None
     # Catch any other exceptions
     except Exception as e:
         print(f"Error: Unexpected error {e}")
         return None
 
-    # Initialize an empty list to store spaces in board
+    # Initialize an empty list and to represents spaces in board
     board = []
     for space in board_spaces:
         if space['type'] == 'property':
             property = Property(space['name'], space['type'], space['price'], space['colour'])
             board.append(property)
-        elif space['type'] == 'go':
+        if space['type'] == 'go':
             go = Property(space['name'], space['type'], 0, "")
             board.append(go)
     return board
