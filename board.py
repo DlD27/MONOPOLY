@@ -1,14 +1,20 @@
 import json
 
-"""
-Function to load the monopoly board from a JSON file
-Reusable for adapting differents board configuration
-"""
+class Property:
+    def __init__(self, name, type, price, colour):
+        self.name = name
+        self.type = type
+        self.price = price
+        self.colour = colour
+        self.owner = None
+
+# Function to load the monopoly board from a JSON file
 def load_board(file_path):
+
     # Attempt to open and load the board from the JSON file
     try:
         with open(file_path, 'r') as file:
-            return json.load(file)
+            board_spaces = json.load(file)
     # Handle the case where the file does not exist
     except FileNotFoundError:
         print(f"Error: The file does not exist")
@@ -20,7 +26,15 @@ def load_board(file_path):
     # Catch any other exceptions
     except Exception as e:
         print(f"Error: Unexpected error {e}")
+        return None
 
-# Print to ensure the board is loaded correctly
-board = load_board('/Users/esmeralda/Downloads/new_coding_test/board.json')
-print(board if board else "Unable to load board data")
+    # Initialize an empty list to store spaces in board
+    board = []
+    for space in board_spaces:
+        if space['type'] == 'property':
+            property = Property(space['name'], space['type'], space['price'], space['colour'])
+            board.append(property)
+        elif space['type'] == 'go':
+            go = Property(space['name'], space['type'], 0, "")
+            board.append(go)
+    return board
