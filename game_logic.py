@@ -16,8 +16,7 @@ def play_game(board, rolls):
 
     game_over = False   # Flag to indicate game has ended
     turn = 0            # Turn count
-    roll_index = 0      # Index in the rolls list
-    GO_REWARD = 1       # Amount given when land on GO
+    roll_index = 0      # Index in the rolls listg
     
     while not game_over:
         current_player = players[turn % len(players)] # Determine the current player
@@ -50,11 +49,6 @@ def play_game(board, rolls):
                 if not current_player.pay_rent(rent, current_space):
                     game_over = True
                     break
-
-        # Handle GO space
-        elif current_space.type == "go":
-            current_player.balance += GO_REWARD
-            print(f"The player lands on GO balance increase by $1")
         
         # Next turn
         turn += 1

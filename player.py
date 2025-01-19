@@ -11,6 +11,9 @@ class Player:
         if self.balance >= 0:
             current_index = self.board.index(self.position)
             new_index = (current_index + roll) % len(self.board)
+            if new_index < current_index:
+                self.balance += 1
+                print(f"{self.name} passed GO, balance increase by $1")
             self.position = self.board[new_index]
             print(f"{self.name} moved to {self.position.name}")
             return True
