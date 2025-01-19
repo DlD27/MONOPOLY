@@ -4,29 +4,22 @@ from rolls import load_rolls
 
 def play_game(board, rolls, players):
 
-    for player in players:
-        print(player)
-
     game_over = False   # Flag to indicate game has ended
     turn = 0            # Turn count
-    roll_index = 0      # Index in the rolls listg
     
     while not game_over:
-        current_player = players[turn % len(players)] # Determine the current player
+
+        current_player = players[turn % len(players)]   # Determine the current player
+        current_roll = rolls.next_roll()                # The roll for current player
 
         # Check if there are rolls left
-        if roll_index >= len(rolls):
+        if current_roll is None:
             print(f"GAME OVER: OUT OF ROLLS")
             game_over = True
             break
-        current_roll = rolls[roll_index] # The roll for current player
 
-        # Move the player if not bankrupt
-        if not current_player.move(current_roll):
-            game_over = True
-            break
-
-        # Find current space after the move
+        # Move the player if not bankrupt and update their current space.
+        current_player.move(current_roll)
         current_space = current_player.position
 
         # Handle property space
@@ -43,10 +36,11 @@ def play_game(board, rolls, players):
                     game_over = True
                     break
         
+        print(current_player)
         # Next turn
         turn += 1
-        roll_index += 1
 
+    # Bankrupt player has occurred, determine winners based on each player's status
     if game_over:
         winners = Player.find_winners(players)
         if winners:

@@ -8,18 +8,17 @@ class Player:
 
     # Updates player's position based on the roll
     def move(self, roll):
-        if self.balance >= 0:
-            current_index = self.board.index(self.position)
-            new_index = (current_index + roll) % len(self.board)
-            if new_index < current_index:
-                self.balance += 1
-                print(f"{self.name} passed GO, balance increase by $1")
-            self.position = self.board[new_index]
-            print(f"{self.name} moved to {self.position.name}")
-            return True
-        else:
-            print(f"{self.name} is bankrupt.")
-            return False
+        current_index = self.board.index(self.position)
+        new_index = (current_index + roll) % len(self.board)
+
+        # The player has completed one round of the board and passed GO
+        if new_index < current_index:
+            self.balance += 1
+            print(f"{self.name} passed GO, balance increase by $1")
+         
+        self.position = self.board[new_index]
+        print(f"{self.name} moved to {self.position.name}")
+        return True
     
     # Allow the player to buy a property when having enough balance
     def buy_property(self, property):
@@ -46,12 +45,10 @@ class Player:
             print(f"{self.name} is bankrupt.")
             return False
     
-    # Determine the winners of the game, who have most money on hand
+    # Identify the winner, which is the player with the most money on hand
     @staticmethod
     def find_winners(players):
         winners = []
-        if not players:
-            return winners
         max_balance = max(player.balance for player in players)
         for player in players:
             if player.balance == max_balance:

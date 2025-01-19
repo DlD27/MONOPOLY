@@ -6,9 +6,10 @@ from board import load_board
 from player import Player
 
 def main():
+
     # Load the board and dice rolls
     board = load_board("/Users/esmeralda/Downloads/new_coding_test/board.json")
-    rolls = load_rolls("/Users/esmeralda/Downloads/new_coding_test/rolls_1.json")
+    rolls = load_rolls("/Users/esmeralda/Downloads/new_coding_test/rolls_2.json")
 
     # Initialise players
     players = [
