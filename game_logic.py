@@ -2,15 +2,8 @@ from player import Player
 from board import load_board
 from rolls import load_rolls
 
-def play_game(board, rolls):
+def play_game(board, rolls, players):
 
-    # Initialise players
-    players = [
-        Player("Peter", board), 
-        Player("Billy", board), 
-        Player("Charlotte", board), 
-        Player("Sweedal", board)
-    ]
     for player in players:
         print(player)
 
@@ -57,9 +50,7 @@ def play_game(board, rolls):
     if game_over:
         winners = Player.find_winners(players)
         if winners:
-            print(f"Winner(s):")
-            for winner in winners:
-                print(f" {winner.name}")
+            print("Winner(s): " + ", ".join(f"{winner.name}" for winner in winners))
         else:
             print(f"No Winner found")
         for player in players:
