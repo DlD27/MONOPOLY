@@ -1,0 +1,48 @@
+[
+    {
+      "name": "GO",
+      "type": "go"
+    },
+    {
+      "name": "A",
+      "price": 1,
+      "colour": "Brown",
+      "type": "property"
+    },
+    {
+      "name": "B",
+      "price": 2,
+      "colour": "Brown",
+      "type": "property"
+    },
+    {
+      "name": "C",
+      "price": 1,
+      "colour": "Red",
+      "type": "property"
+    },
+    {
+      "name": "D",
+      "price": 2,
+      "colour": "Red",
+      "type": "property"
+    },
+    {
+      "name": "E",
+      "price": 3,
+      "colour": "Green",
+      "type": "property"
+    },
+    {
+      "name": "F",
+      "price": 3,
+      "colour": "Green",
+      "type": "property"
+    },
+    {
+      "name": "G",
+      "price": 5,
+      "colour": "Blue",
+      "type": "property"
+    }
+  ]
