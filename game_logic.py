@@ -53,5 +53,16 @@ def play_game(board, rolls):
         # Next turn
         turn += 1
         roll_index += 1
-    
+
+    if game_over:
+        winners = Player.find_winners(players)
+        if winners:
+            print(f"Winner(s):")
+            for winner in winners:
+                print(f" {winner.name}")
+        else:
+            print(f"No Winner found")
+        for player in players:
+            print(player)
+
     return True

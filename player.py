@@ -42,9 +42,21 @@ class Player:
             print(f"{self.name} pays rent ${rent} to {property.name}'s owner {property.owner.name}")
             return True
         else:
-            self.balance -= property.price
+            self.balance -= rent
             print(f"{self.name} is bankrupt.")
             return False
+    
+    # Determine the winners of the game, who have most money on hand
+    @staticmethod
+    def find_winners(players):
+        winners = []
+        if not players:
+            return winners
+        max_balance = max(player.balance for player in players)
+        for player in players:
+            if player.balance == max_balance:
+                winners.append(player)
+        return winners
 
     # Player's status
     def __str__(self):
