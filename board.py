@@ -7,6 +7,21 @@ class Property:
         self.price = price
         self.colour = colour
         self.owner = None
+    
+    # Calculating rent, double if same colour properties are owned by one player
+    def calc_rent(self, board):
+        properties_same_color = []
+        for property in board:
+            if property.type == "property" and property.colour == self.colour:
+                properties_same_color.append(property)
+                if property.owner:
+                    print(f"Properties: ${property.name}, Owner:{property.owner.name}")
+        for property in properties_same_color:
+            if property.owner != self.owner:
+                print(f"Original rent: ${property.price}")
+                return self.price
+        print(f"Double rent: ${self.price * 2}")
+        return self.price * 2
 
 # Load the monopoly board from a JSON file
 def load_board(file_path):

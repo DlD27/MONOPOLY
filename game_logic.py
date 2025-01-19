@@ -39,11 +39,18 @@ def play_game(board, rolls):
 
         # Handle property space
         if current_space.type == "property":
-            # The property is unowned by others, the player buys it
+            # The property is unowned, purchase
             if current_space.owner == None:
                 if not current_player.buy_property(current_space):
                         game_over = True
                         break
+            # The property is owned by others, pay rent
+            elif current_space.owner != current_player:
+                rent = current_space.calc_rent(board)
+                if not current_player.pay_rent(rent, current_space):
+                    game_over = True
+                    break
+
         # Handle GO space
         elif current_space.type == "go":
             current_player.balance += GO_REWARD

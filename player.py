@@ -32,20 +32,17 @@ class Player:
             return False
 
     # Allow the player to pay rent to the owner of a property when having enough balance
-    def pay_rent(self, property):
-        rent = property.price
-        if (rent <= self.balance):
+    def pay_rent(self, rent, property):
+        if rent <= self.balance:
             self.balance -= rent
             property.owner.balance += rent
-            print(f"{self.name} pays rent ${rent} to {property.name}'s onwer {property.owner.name}")
+            print(f"{self.name} pays rent ${rent} to {property.name}'s owner {property.owner.name}")
             return True
         else:
             self.balance -= property.price
             print(f"{self.name} is bankrupt.")
             return False
-    
+
     # Player's status
     def __str__(self):
         return f"Player: {self.name} has ${self.balance} and is at {self.position.name}" 
-
-
