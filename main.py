@@ -10,7 +10,7 @@ def main(board_file, rolls_file):
     board = load_board(board_file)
     rolls = load_rolls(rolls_file)
 
-    # Initialise players
+    # Initialize players
     players = [
         Player("Peter", board), 
         Player("Billy", board), 

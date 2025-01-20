@@ -14,13 +14,9 @@ class Property:
         for property in board:
             if property.type == "property" and property.colour == self.colour:
                 properties_same_color.append(property)
-                if property.owner:
-                    print(f"Properties: ${property.name}, Owner:{property.owner.name}")
         for property in properties_same_color:
             if property.owner != self.owner:
-                print(f"Original rent: ${property.price}")
                 return self.price
-        print(f"Double rent: ${self.price * 2}")
         return self.price * 2
 
 # Load the monopoly board from a JSON file
@@ -43,7 +39,7 @@ def load_board(file_path):
         print(f"Error: Unexpected error {e}")
         return None
 
-    # Initialize an empty list and to represents spaces in board
+    # Initialize an empty list to represents spaces in board
     board = []
     for space in board_spaces:
         if space['type'] == 'property':

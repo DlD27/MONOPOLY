@@ -1,10 +1,13 @@
+STARTING_BALANCE = 16
+GO_AWARD = 1
+
 class Player:
     def __init__(self, name, board):
         self.name = name            
-        self.balance = 16           # Starting balance for the player
-        self.position = board[0]    # Starting position on the board
-        self.properties = []        # List of properties owned the by player
-        self.board = board          # Board the player is playing on
+        self.balance = STARTING_BALANCE # Starting balance for the player
+        self.position = board[0]        # Starting position on the board
+        self.properties = []            # List of properties owned the by player
+        self.board = board              # Board the player is playing on
 
     # Updates player's position based on the roll
     def move(self, roll):
@@ -13,7 +16,7 @@ class Player:
 
         # The player has completed one round of the board and passed GO
         if new_index < current_index:
-            self.balance += 1
+            self.balance += GO_AWARD
             print(f"{self.name} passed GO, balance increase by $1")
          
         self.position = self.board[new_index]
@@ -30,7 +33,7 @@ class Player:
             return True
         else:
             self.balance -= property.price
-            print(f"{self.name} is bankrupt.")
+            print(f"{self.name} is bankrupt, unable to purchase a property.")
             return False
 
     # Allow the player to pay rent to the owner of a property when having enough balance
@@ -42,7 +45,7 @@ class Player:
             return True
         else:
             self.balance -= rent
-            print(f"{self.name} is bankrupt.")
+            print(f"{self.name} is bankrupt, unable to pay rent.")
             return False
     
     # Identify the winner, which is the player with the most money on hand

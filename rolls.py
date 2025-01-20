@@ -17,7 +17,6 @@ class DiceRolls:
 
 # Load predefined dice rolls from a JSON file
 def load_rolls(file_path):
-
     # Attempt to open and load the rolls from the JSON file
     try:
         with open(file_path, 'r') as file:
